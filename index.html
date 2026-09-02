@@ -4,269 +4,384 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Chronicles of E E</title>
+  <!-- Google Fonts for elevated epic fantasy typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
-    body {
+    /* CSS Reset & Variable Setup */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      /* Sets the background image to cover the screen and stay fixed during scroll */
-      background-image: url('image.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      background-repeat: no-repeat;
-      font-family: Arial, sans-serif;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
     }
 
-    /* Scrollable container with dark background and border for maximum readability */
-    .content-container {
-      max-width: 800px;
-      margin: 40px 20px;
-      padding: 40px;
-      background-color: rgba(0, 0, 0, 0.85);
-      border: 3px solid #ffd700;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-      line-height: 1.6;
+    body {
+      min-height: 100vh;
+      font-family: 'Lora', Georgia, serif;
+      color: #f1f5f9;
+      background-color: #0b0d11;
+      /* Fixed Full-Screen Visual Background */
+      background-image: url('image.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      overflow-y: scroll;
+    }
+
+    /* Ambient Overlay for depth and background contrast */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Scrollable High-Quality Glassmorphism Container */
+    .chronicles-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 20px auto;
+      padding: 60px 50px;
+      background: rgba(13, 17, 23, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      /* Ornate Outer Legibility Borders */
+      border: 2px solid #d4af37;
+      outline: 6px solid rgba(212, 175, 55, 0.25);
+      outline-offset: 4px;
+      border-radius: 16px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.9),
+        inset 0 0 30px rgba(212, 175, 55, 0.15),
+        0 0 25px rgba(212, 175, 55, 0.3);
+    }
+
+    /* Header Styling */
+    .chronicles-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
     }
 
     h1 {
-      text-align: center;
-      color: #ffd700;
-      font-size: 2.5em;
-      border-bottom: 2px solid #ffd700;
-      padding-bottom: 10px;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px 4px #000000;
+      font-family: 'Cinzel', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #fff2a8 0%, #d4af37 60%, #aa7c11 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+      margin-bottom: 15px;
     }
 
+    .divider {
+      height: 3px;
+      width: 60%;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+      box-shadow: 0 0 10px #d4af37;
+    }
+
+    /* Section Headings */
     h2 {
-      color: #ffaa00;
-      margin-top: 30px;
-      border-left: 4px solid #ffaa00;
-      padding-left: 10px;
-      text-shadow: 1px 1px 3px #000000;
+      font-family: 'Cinzel', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #f3e5ab;
+      margin-top: 45px;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.4);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
     }
 
+    h2::before {
+      content: "◆";
+      font-size: 0.8rem;
+      color: #d4af37;
+      margin-right: 12px;
+    }
+
+    /* Paragraph Text Styling */
     p {
-      margin-bottom: 16px;
-      font-size: 1.1em;
-      text-shadow: 1px 1px 2px #000000;
+      font-size: 1.125rem;
+      line-height: 1.85;
+      color: #e2e8f0;
+      margin-bottom: 22px;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+      text-align: justify;
+    }
+
+    /* First Paragraph Drop Cap Effect */
+    .chronicles-wrapper > p:first-of-type::first-letter {
+      font-family: 'Cinzel', serif;
+      font-size: 3.5rem;
+      float: left;
+      line-height: 0.8;
+      margin-right: 12px;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    /* Responsive Adjustments for Mobile */
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .chronicles-wrapper {
+        padding: 30px 20px;
+        margin: 10px auto;
+      }
+
+      h1 {
+        font-size: 2rem;
+        letter-spacing: 2px;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.7;
+        text-align: left;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="content-container">
-    <h1>THE CHRONICLES OF E E</h1>
+  <div class="chronicles-wrapper">
+    <div class="chronicles-header">
+      <h1>The Chronicles of E E</h1>
+      <div class="divider"></div>
+    </div>
 
     <h2>THE CREATION OF E E</h2>
-    <p>Before the kingdoms had borders, before the armies had banners, before the living letters had learned to speak their names with pride or fear, and before the wars that would eventually shake entire continents had even entered the imagination of the world below, there existed a place untouched by the noise, violence, ambition, and uncertainty that would later become so deeply woven into the history of E E. That place was Heaven, a realm beyond the ordinary world where the beginnings of things could exist before their consequences were known, and it was there, long before anyone below understood what his name would eventually mean, that E E was being created.</p>
-    <p>E E's creation was unlike the ordinary birth of a creature or the formation of another living letter, because even while he was still unfinished, there was something about him that suggested that his existence would eventually become connected to events far greater than himself. He was being formed in Heaven while the world beneath him continued its endless movement, with kingdoms rising in distant lands, strange creatures appearing in places no map had yet recorded, and the earliest societies of the living letters slowly beginning to develop their own customs, rivalries, friendships, and traditions. E E had not yet entered that world, but he could look down upon it, and although he could not know every event that the future would eventually bring, he could see enough to understand that the world would someday need people willing to stand against those who sought to control it through fear and overwhelming power.</p>
-    <p>During the time of his creation, E E did something that would later become one of the most important parts of his origin: he blessed SUBJECT R and SUBJECT J. The blessing was given before the great wars, before the Heather Gem became the center of international conflict, and before the names of V V, Carlos Crown Bean, Kris, Mrs. Burton, Mr. Luke, Chin Crater Legend, or Orifly became connected to the history of the world, which meant that SUBJECT R and SUBJECT J were among the earliest beings to receive the influence of E E before his story had even truly begun. The act was not simply a passing moment in Heaven, because it represented the first outward expression of the role E E would eventually play in the world below, where his actions would repeatedly affect people and creatures far beyond his immediate circle of friends.</p>
-    <p>Yet E E's influence in Heaven did not stop with the blessing of SUBJECT R and SUBJECT J, because as his creation continued, he began creating the first members of several species that would eventually become deeply connected to the history of his alliance. Among these creations was the first Watermelon Monkey, a strange and powerful creature whose appearance might have seemed almost absurd to anyone who had never witnessed the bizarre world that would eventually develop around E E, but whose existence would later become part of a lineage that produced generations of Watermelon Monkeys willing to fight alongside E E when the world descended into war. The first Watermelon Monkey was not created merely as another creature to populate the world; it was the beginning of a family whose descendants would eventually become recognizable across battlefields, camps, kingdoms, and stories told by those who survived the wars of the Chronicles.</p>
-    <p>After creating the first Watermelon Monkey, E E created the first Bee, beginning a lineage that would eventually include Barry Bee Benson, Mustache Bee, Unibrow Bee, and the many other Bees who would become associated with the world surrounding E E. The first Bee could not possibly have known what the future held, nor could it have imagined that its descendants would someday fly above enormous armies while battles raged beneath them, but its creation was nevertheless important because it established one of the earliest living connections between E E and the creatures that would eventually stand beside him. The Bees would later become messengers, fighters, companions, and witnesses to the greatest events of the age, and their history could be traced all the way back to that first creation in Heaven.</p>
-    <p>Then E E created the first Snail.</p>
-    <p>Of all the creatures whose origins could later be traced back to that moment, the Snails held a particularly important place in E E's history because their loyalty to him did not begin after a war, after a political agreement, or after an enemy had threatened them; their loyalty existed from the beginning, because the first Snail had been created by E E himself while he was still in Heaven. This meant that when the Snails eventually appeared beside E E during the great wars, they were not newly converted allies whose allegiance could easily be questioned, but members of a lineage whose connection to E E was older than the conflict between E E and V V, older than the V V-ian Empire, older than the Ten-Day Campaign, and older even than the existence of many of the kingdoms that would later become involved in the struggle.</p>
-    <p>The creation of the first Watermelon Monkey, the first Bee, and the first Snail therefore became one of the earliest foundations of the future world, even though nobody living below Heaven could yet understand its significance. E E had created creatures that would eventually become part of his family of allies, and he had done so before the first great war had been fought, before anyone had ever heard of the Heather Gem, and before the world had any reason to believe that the future would depend upon the friendships and loyalties being formed in those ancient days.</p>
-    <p>When E E's creation was finally complete, the moment came for him to descend from Heaven into the world below, leaving behind the place where his story had begun and entering a world that was already moving toward a future filled with events that he could not yet fully understand. He carried with him the blessings he had given, the creations he had begun, and the unseen destiny that would eventually place him at the center of one of the longest and most complicated chains of events the world had ever known.</p>
-    <p>Heaven had given the world E E.</p>
-    <p>The world would decide what his story became.</p>
+    <p>Before the kingdoms had borders, before the armies had banners, before the living letters had learned to speak their names with pride or fear, and before the wars that would eventually shake entire continents had even entered the imagination of the world below, there existed a place untouched by the noise, violence, ambition, and uncertainty that would later become so deeply woven into the history of E E[cite: 1]. That place was Heaven, a realm beyond the ordinary world where the beginnings of things could exist before their consequences were known, and it was there, long before anyone below understood what his name would eventually mean, that E E was being created[cite: 1].</p>
+    <p>E E's creation was unlike the ordinary birth of a creature or the formation of another living letter, because even while he was still unfinished, there was something about him that suggested that his existence would eventually become connected to events far greater than himself[cite: 1]. He was being formed in Heaven while the world beneath him continued its endless movement, with kingdoms rising in distant lands, strange creatures appearing in places no map had yet recorded, and the earliest societies of the living letters slowly beginning to develop their own customs, rivalries, friendships, and traditions[cite: 1]. E E had not yet entered that world, but he could look down upon it, and although he could not know every event that the future would eventually bring, he could see enough to understand that the world would someday need people willing to stand against those who sought to control it through fear and overwhelming power[cite: 1].</p>
+    <p>During the time of his creation, E E did something that would later become one of the most important parts of his origin: he blessed SUBJECT R and SUBJECT J[cite: 1]. The blessing was given before the great wars, before the Heather Gem became the center of international conflict, and before the names of V V, Carlos Crown Bean, Kris, Mrs. Burton, Mr. Luke, Chin Crater Legend, or Orifly became connected to the history of the world, which meant that SUBJECT R and SUBJECT J were among the earliest beings to receive the influence of E E before his story had even truly begun[cite: 1]. The act was not simply a passing moment in Heaven, because it represented the first outward expression of the role E E would eventually play in the world below, where his actions would repeatedly affect people and creatures far beyond his immediate circle of friends[cite: 1].</p>
+    <p>Yet E E's influence in Heaven did not stop with the blessing of SUBJECT R and SUBJECT J, because as his creation continued, he began creating the first members of several species that would eventually become deeply connected to the history of his alliance[cite: 1]. Among these creations was the first Watermelon Monkey, a strange and powerful creature whose appearance might have seemed almost absurd to anyone who had never witnessed the bizarre world that would eventually develop around E E, but whose existence would later become part of a lineage that produced generations of Watermelon Monkeys willing to fight alongside E E when the world descended into war[cite: 1]. The first Watermelon Monkey was not created merely as another creature to populate the world; it was the beginning of a family whose descendants would eventually become recognizable across battlefields, camps, kingdoms, and stories told by those who survived the wars of the Chronicles[cite: 1].</p>
+    <p>After creating the first Watermelon Monkey, E E created the first Bee, beginning a lineage that would eventually include Barry Bee Benson, Mustache Bee, Unibrow Bee, and the many other Bees who would become associated with the world surrounding E E[cite: 1]. The first Bee could not possibly have known what the future held, nor could it have imagined that its descendants would someday fly above enormous armies while battles raged beneath them, but its creation was nevertheless important because it established one of the earliest living connections between E E and the creatures that would eventually stand beside him[cite: 1]. The Bees would later become messengers, fighters, companions, and witnesses to the greatest events of the age, and their history could be traced all the way back to that first creation in Heaven[cite: 1].</p>
+    <p>Then E E created the first Snail[cite: 1].</p>
+    <p>Of all the creatures whose origins could later be traced back to that moment, the Snails held a particularly important place in E E's history because their loyalty to him did not begin after a war, after a political agreement, or after an enemy had threatened them; their loyalty existed from the beginning, because the first Snail had been created by E E himself while he was still in Heaven[cite: 1]. This meant that when the Snails eventually appeared beside E E during the great wars, they were not newly converted allies whose allegiance could easily be questioned, but members of a lineage whose connection to E E was older than the conflict between E E and V V, older than the V V-ian Empire, older than the Ten-Day Campaign, and older even than the existence of many of the kingdoms that would later become involved in the struggle[cite: 1].</p>
+    <p>The creation of the first Watermelon Monkey, the first Bee, and the first Snail therefore became one of the earliest foundations of the future world, even though nobody living below Heaven could yet understand its significance[cite: 1]. E E had created creatures that would eventually become part of his family of allies, and he had done so before the first great war had been fought, before anyone had ever heard of the Heather Gem, and before the world had any reason to believe that the future would depend upon the friendships and loyalties being formed in those ancient days[cite: 1].</p>
+    <p>When E E's creation was finally complete, the moment came for him to descend from Heaven into the world below, leaving behind the place where his story had begun and entering a world that was already moving toward a future filled with events that he could not yet fully understand[cite: 1]. He carried with him the blessings he had given, the creations he had begun, and the unseen destiny that would eventually place him at the center of one of the longest and most complicated chains of events the world had ever known[cite: 1].</p>
+    <p>Heaven had given the world E E[cite: 1].</p>
+    <p>The world would decide what his story became[cite: 1].</p>
 
     <h2>THE WORLD OF THE LIVING LETTERS</h2>
-    <p>The world into which E E descended was enormous, chaotic, beautiful, and unpredictable, a place where living letters could possess personalities, kingdoms could rise around their rulers, strange creatures could become soldiers or companions, and an ordinary disagreement between two individuals could sometimes grow over the course of years until it became a conflict involving entire nations. There was never a guarantee that peace would last, because the world was filled with ambitious rulers, mysterious powers, creatures whose abilities were poorly understood, and people who believed that strength gave them the right to determine the future of everyone around them.</p>
-    <p>E E gradually became part of this world, and as time passed, the strange collection of people and creatures around him began to form the beginnings of what would eventually become his great alliance. Among the earliest and most important of those companions was Carlos Crown Bean, who became E E's closest and most trusted ally, a figure whose loyalty would remain one of the most consistent elements throughout the long and turbulent history that followed. When E E needed someone beside him during moments of uncertainty, Carlos Crown Bean was there; when armies began gathering and the possibility of war became unavoidable, Carlos Crown Bean stood with him; and when the Heather Gem eventually became the object over which empires were willing to fight, Carlos Crown Bean did not abandon E E.</p>
-    <p>Around them, the world continued to grow.</p>
-    <p>A A and the other living letters became connected to E E's side, while the Bees whose lineage began with the first Bee in Heaven gradually developed into figures such as Barry Bee Benson, Mustache Bee, and Unibrow Bee. The Watermelon Monkeys continued to multiply, eventually becoming a recognizable part of E E's forces, while the Bjorns joined the strange collection of beings associated with his growing side. The Snails, whose loyalty had existed since the creation of the first Snail, remained with E E as the world moved toward the conflicts that would eventually define an entire era.</p>
-    <p>For a time, these relationships were simply friendships and alliances among people living in the same enormous world, but history has a way of turning ordinary relationships into something much greater when circumstances become desperate enough.</p>
-    <p>The first great threat came from the rise of V V.</p>
+    <p>The world into which E E descended was enormous, chaotic, beautiful, and unpredictable, a place where living letters could possess personalities, kingdoms could rise around their rulers, strange creatures could become soldiers or companions, and an ordinary disagreement between two individuals could sometimes grow over the course of years until it became a conflict involving entire nations[cite: 1]. There was never a guarantee that peace would last, because the world was filled with ambitious rulers, mysterious powers, creatures whose abilities were poorly understood, and people who believed that strength gave them the right to determine the future of everyone around them[cite: 1].</p>
+    <p>E E gradually became part of this world, and as time passed, the strange collection of people and creatures around him began to form the beginnings of what would eventually become his great alliance[cite: 1]. Among the earliest and most important of those companions was Carlos Crown Bean, who became E E's closest and most trusted ally, a figure whose loyalty would remain one of the most consistent elements throughout the long and turbulent history that followed[cite: 1]. When E E needed someone beside him during moments of uncertainty, Carlos Crown Bean was there; when armies began gathering and the possibility of war became unavoidable, Carlos Crown Bean stood with him; and when the Heather Gem eventually became the object over which empires were willing to fight, Carlos Crown Bean did not abandon E E[cite: 1].</p>
+    <p>Around them, the world continued to grow[cite: 1].</p>
+    <p>A A and the other living letters became connected to E E's side, while the Bees whose lineage began with the first Bee in Heaven gradually developed into figures such as Barry Bee Benson, Mustache Bee, and Unibrow Bee[cite: 1]. The Watermelon Monkeys continued to multiply, eventually becoming a recognizable part of E E's forces, while the Bjorns joined the strange collection of beings associated with his growing side[cite: 1]. The Snails, whose loyalty had existed since the creation of the first Snail, remained with E E as the world moved toward the conflicts that would eventually define an entire era[cite: 1].</p>
+    <p>For a time, these relationships were simply friendships and alliances among people living in the same enormous world, but history has a way of turning ordinary relationships into something much greater when circumstances become desperate enough[cite: 1].</p>
+    <p>The first great threat came from the rise of V V[cite: 1].</p>
 
     <h2>THE V V-IAN EMPIRE AND THE HEATHER GEM</h2>
-    <p>V V ruled the V V-ian Empire, a powerful realm whose influence continued to grow as V V became increasingly determined to secure his position through military strength. To V V, ordinary armies and conventional weapons were not enough to guarantee the future of his empire, because he believed that true security could only come from possessing a power so overwhelming that no enemy would dare challenge him. His ambitions therefore extended beyond territory and political influence; he wanted a weapon that could make the V V-ian Empire practically untouchable.</p>
-    <p>That ambition eventually brought him toward the Heather Gem.</p>
-    <p>The Heather Gem was one of the most mysterious and powerful objects in the world, an artifact whose energy was believed to be capable of producing destructive forces on a scale far beyond ordinary weapons. Stories surrounding the gem claimed that its power could be used to create weapons capable of destroying continents, and whether every legend about it was accurate mattered less than the fact that powerful rulers believed those legends enough to risk entire wars in the hope of controlling it.</p>
-    <p>V V saw the Heather Gem as the missing piece of his plans.</p>
-    <p>His intention was to use the gem to power a gigantic rail gun, a weapon whose destructive potential would transform the V V-ian Empire from a powerful kingdom into something far more dangerous. The rail gun was not simply another military machine that could be placed on a battlefield and forgotten after a single battle; it represented V V's desire to possess a weapon capable of deciding conflicts before they even began, because if an empire possessed enough power to destroy its enemies from a distance, then ordinary resistance could become almost meaningless.</p>
-    <p>When E E and Carlos Crown Bean learned about V V's plans, they understood the danger immediately.</p>
-    <p>The conflict could no longer be treated as another disagreement between rival kingdoms, because the Heather Gem represented a level of power capable of affecting the entire world. If V V obtained the gem and successfully connected it to his rail gun, the consequences could reach far beyond the borders of the V V-ian Empire, potentially placing kingdoms that had never even taken part in the conflict under the threat of destruction.</p>
-    <p>E E therefore prepared for war.</p>
+    <p>V V ruled the V V-ian Empire, a powerful realm whose influence continued to grow as V V became increasingly determined to secure his position through military strength[cite: 1]. To V V, ordinary armies and conventional weapons were not enough to guarantee the future of his empire, because he believed that true security could only come from possessing a power so overwhelming that no enemy would dare challenge him[cite: 1]. His ambitions therefore extended beyond territory and political influence; he wanted a weapon that could make the V V-ian Empire practically untouchable[cite: 1].</p>
+    <p>That ambition eventually brought him toward the Heather Gem[cite: 1].</p>
+    <p>The Heather Gem was one of the most mysterious and powerful objects in the world, an artifact whose energy was believed to be capable of producing destructive forces on a scale far beyond ordinary weapons[cite: 1]. Stories surrounding the gem claimed that its power could be used to create weapons capable of destroying continents, and whether every legend about it was accurate mattered less than the fact that powerful rulers believed those legends enough to risk entire wars in the hope of controlling it[cite: 1].</p>
+    <p>V V saw the Heather Gem as the missing piece of his plans[cite: 1].</p>
+    <p>His intention was to use the gem to power a gigantic rail gun, a weapon whose destructive potential would transform the V V-ian Empire from a powerful kingdom into something far more dangerous[cite: 1]. The rail gun was not simply another military machine that could be placed on a battlefield and forgotten after a single battle; it represented V V's desire to possess a weapon capable of deciding conflicts before they even began, because if an empire possessed enough power to destroy its enemies from a distance, then ordinary resistance could become almost meaningless[cite: 1].</p>
+    <p>When E E and Carlos Crown Bean learned about V V's plans, they understood the danger immediately[cite: 1].</p>
+    <p>The conflict could no longer be treated as another disagreement between rival kingdoms, because the Heather Gem represented a level of power capable of affecting the entire world[cite: 1]. If V V obtained the gem and successfully connected it to his rail gun, the consequences could reach far beyond the borders of the V V-ian Empire, potentially placing kingdoms that had never even taken part in the conflict under the threat of destruction[cite: 1].</p>
+    <p>E E therefore prepared for war[cite: 1].</p>
 
     <h2>THE TEN-DAY CAMPAIGN</h2>
-    <p>The conflict that followed became known as the Ten-Day Campaign, a war that lasted only ten days but became one of the most heavily remembered military events in the history of the Chronicles because of the sheer number of forces, plans, betrayals, attacks, retreats, and desperate decisions that unfolded within such a short period of time. E E and Carlos Crown Bean found themselves at the center of a growing resistance, surrounded by living letters, Bees, Watermelon Monkeys, Bjorns, Snails, and other allies who understood that the struggle was no longer simply about who would control a particular piece of land, but about who would ultimately control the power capable of changing the balance of the entire world.</p>
-    <p>The first days of the campaign were filled with uncertainty, because neither side knew exactly where the Heather Gem was hidden or how quickly the opposing army might reach it. Soldiers moved through unfamiliar territory while scouts attempted to discover enemy positions, Bees carried information between different sections of the army, and commanders were forced to make decisions based upon incomplete information while knowing that a single mistake could give V V the opportunity he needed to complete his weapon. The Snails marched with E E's forces as they had always done, their presence serving as a reminder that their alliance with him was not a recent development but part of a history that stretched all the way back to the first moments of creation.</p>
-    <p>As the campaign continued, the battles became more intense, and the world around them began to feel increasingly shaped by the conflict. E E and Carlos Crown Bean fought to keep their forces together while V V's army attempted to break through their defenses and locate the Heather Gem. Watermelon Monkeys charged into dangerous areas of the battlefield, Bees moved through the sky above the fighting, Bjorns marched alongside the living letters, and the Snails continued their advance with the rest of E E's forces, refusing to abandon the side they had supported from the beginning.</p>
-    <p>Eventually, E E and Carlos Crown Bean succeeded in obtaining the Heather Gem.</p>
-    <p>For a brief moment, it seemed as though the most dangerous part of the war might finally be over, but the two allies understood that simply possessing the gem was not enough. V V would continue fighting as long as there was a possibility that he could recover it, and every moment spent defending the artifact was another opportunity for the V V-ian Empire to launch another attack.</p>
-    <p>E E and Carlos Crown Bean therefore made a decision that carried enormous risks: rather than allow the Heather Gem to remain an object that V V could endlessly pursue, they would use its power themselves to create a weapon capable of countering the threat posed by the rail gun.</p>
-    <p>From the power of the Heather Gem, they created the heat-seeking ray gun.</p>
-    <p>The creation of the weapon changed the nature of the war, because E E's side now possessed a weapon powered by the very artifact V V had spent so much time trying to obtain. Yet the existence of the ray gun also demonstrated just how dangerous the Heather Gem truly was, because the difference between salvation and destruction now depended largely upon who held the artifact and what they intended to do with its power.</p>
-    <p>V V was not willing to accept defeat.</p>
+    <p>The conflict that followed became known as the Ten-Day Campaign, a war that lasted only ten days but became one of the most heavily remembered military events in the history of the Chronicles because of the sheer number of forces, plans, betrayals, attacks, retreats, and desperate decisions that unfolded within such a short period of time[cite: 1]. E E and Carlos Crown Bean found themselves at the center of a growing resistance, surrounded by living letters, Bees, Watermelon Monkeys, Bjorns, Snails, and other allies who understood that the struggle was no longer simply about who would control a particular piece of land, but about who would ultimately control the power capable of changing the balance of the entire world[cite: 1].</p>
+    <p>The first days of the campaign were filled with uncertainty, because neither side knew exactly where the Heather Gem was hidden or how quickly the opposing army might reach it[cite: 1]. Soldiers moved through unfamiliar territory while scouts attempted to discover enemy positions, Bees carried information between different sections of the army, and commanders were forced to make decisions based upon incomplete information while knowing that a single mistake could give V V the opportunity he needed to complete his weapon[cite: 1]. The Snails marched with E E's forces as they had always done, their presence serving as a reminder that their alliance with him was not a recent development but part of a history that stretched all the way back to the first moments of creation[cite: 1].</p>
+    <p>As the campaign continued, the battles became more intense, and the world around them began to feel increasingly shaped by the conflict[cite: 1]. E E and Carlos Crown Bean fought to keep their forces together while V V's army attempted to break through their defenses and locate the Heather Gem[cite: 1]. Watermelon Monkeys charged into dangerous areas of the battlefield, Bees moved through the sky above the fighting, Bjorns marched alongside the living letters, and the Snails continued their advance with the rest of E E's forces, refusing to abandon the side they had supported from the beginning[cite: 1].</p>
+    <p>Eventually, E E and Carlos Crown Bean succeeded in obtaining the Heather Gem[cite: 1].</p>
+    <p>For a brief moment, it seemed as though the most dangerous part of the war might finally be over, but the two allies understood that simply possessing the gem was not enough[cite: 1]. V V would continue fighting as long as there was a possibility that he could recover it, and every moment spent defending the artifact was another opportunity for the V V-ian Empire to launch another attack[cite: 1].</p>
+    <p>E E and Carlos Crown Bean therefore made a decision that carried enormous risks: rather than allow the Heather Gem to remain an object that V V could endlessly pursue, they would use its power themselves to create a weapon capable of countering the threat posed by the rail gun[cite: 1].</p>
+    <p>From the power of the Heather Gem, they created the heat-seeking ray gun[cite: 1].</p>
+    <p>The creation of the weapon changed the nature of the war, because E E's side now possessed a weapon powered by the very artifact V V had spent so much time trying to obtain[cite: 1]. Yet the existence of the ray gun also demonstrated just how dangerous the Heather Gem truly was, because the difference between salvation and destruction now depended largely upon who held the artifact and what they intended to do with its power[cite: 1].</p>
+    <p>V V was not willing to accept defeat[cite: 1].</p>
 
     <h2>THE RAID AND THE FALLING GEM</h2>
-    <p>During a later raid against E E's camp, V V and his forces struck with enough speed and determination to throw the camp into chaos. Soldiers rushed through the area as defenders attempted to reorganize themselves, equipment was knocked aside in the confusion, and the carefully protected Heather Gem was suddenly exposed to the danger that E E had spent so long trying to prevent.</p>
-    <p>Then the gem was knocked loose.</p>
-    <p>It flew away from its position, spinning through the air while soldiers from both sides reached toward it, and for a brief instant the entire battle seemed to freeze around that single object because everyone understood exactly what it represented. Whoever caught the Heather Gem would possess the power around which the entire war had been built.</p>
-    <p>V V reached it first.</p>
-    <p>He seized the gem and immediately attempted to escape with it, but Carlos Crown Bean refused to allow the victory to become permanent and pursued him, turning the raid into a desperate chase in which every step mattered because V V was once again carrying the artifact that could power his rail gun.</p>
-    <p>The chase became another chapter in the endless struggle over the Heather Gem, but while E E's forces continued fighting V V, another story was unfolding in the mysterious world of the Years of Judgment.</p>
+    <p>During a later raid against E E's camp, V V and his forces struck with enough speed and determination to throw the camp into chaos[cite: 1]. Soldiers rushed through the area as defenders attempted to reorganize themselves, equipment was knocked aside in the confusion, and the carefully protected Heather Gem was suddenly exposed to the danger that E E had spent so long trying to prevent[cite: 1].</p>
+    <p>Then the gem was knocked loose[cite: 1].</p>
+    <p>It flew away from its position, spinning through the air while soldiers from both sides reached toward it, and for a brief instant the entire battle seemed to freeze around that single object because everyone understood exactly what it represented[cite: 1]. Whoever caught the Heather Gem would possess the power around which the entire war had been built[cite: 1].</p>
+    <p>V V reached it first[cite: 1].</p>
+    <p>He seized the gem and immediately attempted to escape with it, but Carlos Crown Bean refused to allow the victory to become permanent and pursued him, turning the raid into a desperate chase in which every step mattered because V V was once again carrying the artifact that could power his rail gun[cite: 1].</p>
+    <p>The chase became another chapter in the endless struggle over the Heather Gem, but while E E's forces continued fighting V V, another story was unfolding in the mysterious world of the Years of Judgment[cite: 1].</p>
 
     <h2>THE MYSTERIOUS BOOK</h2>
-    <p>The Years of Judgment were unlike ordinary years, because those who became involved with them often found themselves caught inside events that seemed to follow rules beyond the understanding of the ordinary world. At the center of this strange period was a mysterious book, a place capable of trapping people within its pages and subjecting them to experiences that could change their identities, their loyalties, and their understanding of the world outside.</p>
-    <p>Mustache Bee became trapped inside the book.</p>
-    <p>The fact that Mustache Bee had once been one of the Bees connected to E E made his imprisonment especially significant, because nobody expected that one of E E's own allies would eventually emerge from such a strange experience transformed into someone who would become involved in another dangerous chapter of the story. Mustache Bee endured the Years of Judgment, remaining inside the book through its strange trials until the Third Year of Judgment finally passed.</p>
-    <p>After the Third Year, Mustache Bee escaped.</p>
-    <p>But the creature who emerged was no longer simply the Mustache Bee everyone had known.</p>
-    <p>He became Kris Poo.</p>
-    <p>Kris Poo's transformation marked a new phase in the story, and his path eventually crossed with Mrs. Burton and Mr. Luke, who became interested in the secrets surrounding E E and the Heather Gem. Kris Poo eventually took E E to Mrs. Burton and Mr. Luke, placing E E directly in the path of people who wanted to understand the artifact and the knowledge surrounding it.</p>
-    <p>The mysterious book had therefore produced consequences that extended far beyond its own pages.</p>
+    <p>The Years of Judgment were unlike ordinary years, because those who became involved with them often found themselves caught inside events that seemed to follow rules beyond the understanding of the ordinary world[cite: 1]. At the center of this strange period was a mysterious book, a place capable of trapping people within its pages and subjecting them to experiences that could change their identities, their loyalties, and their understanding of the world outside[cite: 1].</p>
+    <p>Mustache Bee became trapped inside the book[cite: 1].</p>
+    <p>The fact that Mustache Bee had once been one of the Bees connected to E E made his imprisonment especially significant, because nobody expected that one of E E's own allies would eventually emerge from such a strange experience transformed into someone who would become involved in another dangerous chapter of the story[cite: 1]. Mustache Bee endured the Years of Judgment, remaining inside the book through its strange trials until the Third Year of Judgment finally passed[cite: 1].</p>
+    <p>After the Third Year, Mustache Bee escaped[cite: 1].</p>
+    <p>But the creature who emerged was no longer simply the Mustache Bee everyone had known[cite: 1].</p>
+    <p>He became Kris Poo[cite: 1].</p>
+    <p>Kris Poo's transformation marked a new phase in the story, and his path eventually crossed with Mrs. Burton and Mr. Luke, who became interested in the secrets surrounding E E and the Heather Gem[cite: 1]. Kris Poo eventually took E E to Mrs. Burton and Mr. Luke, placing E E directly in the path of people who wanted to understand the artifact and the knowledge surrounding it[cite: 1].</p>
+    <p>The mysterious book had therefore produced consequences that extended far beyond its own pages[cite: 1].</p>
 
     <h2>MRS. BURTON'S CAPTURE OF E E</h2>
-    <p>Mrs. Burton eventually captured E E because she wanted information about the Heather Gem, and she understood that E E possessed knowledge that could potentially reveal secrets about the artifact that were otherwise difficult to obtain. She attempted to force E E into revealing what he knew, but E E refused because he understood that information about the Heather Gem could be just as dangerous as the gem itself when placed in the wrong hands.</p>
-    <p>The pressure continued, but E E would not surrender.</p>
-    <p>Eventually, he escaped.</p>
-    <p>His escape prevented Mrs. Burton from obtaining everything she wanted, but it did not erase the danger surrounding the Heather Gem, and the events surrounding Kris Poo, Mrs. Burton, Mr. Luke, and the Years of Judgment became another layer of history that would eventually influence the alliances of the future.</p>
-    <p>The Sixth Year of Judgment was still ahead, and Ryan and Jax were expected to become part of the continuing events, meaning that even though E E had escaped Mrs. Burton's control, the larger story surrounding the mysterious book had not yet reached its conclusion.</p>
+    <p>Mrs. Burton eventually captured E E because she wanted information about the Heather Gem, and she understood that E E possessed knowledge that could potentially reveal secrets about the artifact that were otherwise difficult to obtain[cite: 1]. She attempted to force E E into revealing what he knew, but E E refused because he understood that information about the Heather Gem could be just as dangerous as the gem itself when placed in the wrong hands[cite: 1].</p>
+    <p>The pressure continued, but E E would not surrender[cite: 1].</p>
+    <p>Eventually, he escaped[cite: 1].</p>
+    <p>His escape prevented Mrs. Burton from obtaining everything she wanted, but it did not erase the danger surrounding the Heather Gem, and the events surrounding Kris Poo, Mrs. Burton, Mr. Luke, and the Years of Judgment became another layer of history that would eventually influence the alliances of the future[cite: 1].</p>
+    <p>The Sixth Year of Judgment was still ahead, and Ryan and Jax were expected to become part of the continuing events, meaning that even though E E had escaped Mrs. Burton's control, the larger story surrounding the mysterious book had not yet reached its conclusion[cite: 1].</p>
 
     <h2>THE CHILDREN OF E E</h2>
-    <p>As the old conflicts continued to shape the world, E E's family grew, and a new generation appeared in the form of Q Q, G G, R R, and B B. Each carried a distinct identity, with Q Q associated with pink, G G with green, R R with red, and B B with blue, but their significance went far beyond their colors because they represented a generation that had been born into a world already carrying the scars of conflicts they had never personally started.</p>
-    <p>They grew up surrounded by stories of their father's battles, hearing about Carlos Crown Bean and the loyalty he had shown E E, about the Bees who had fought in the skies, about the Watermelon Monkeys and Bjorns who had marched across battlefields, and especially about the Snails whose relationship with E E had existed since the first Snail was created in Heaven. They learned that the Heather Gem had nearly become the foundation of a weapon capable of catastrophic destruction, that V V had once attempted to use it to power a rail gun, and that their father had repeatedly been forced to fight not because he desired endless war but because powerful enemies kept attempting to seize control of forces that could endanger everyone.</p>
-    <p>The younger generation therefore inherited something more complicated than a kingdom.</p>
-    <p>They inherited history.</p>
-    <p>And eventually, history came back for them.</p>
+    <p>As the old conflicts continued to shape the world, E E's family grew, and a new generation appeared in the form of Q Q, G G, R R, and B B[cite: 1]. Each carried a distinct identity, with Q Q associated with pink, G G with green, R R with red, and B B with blue, but their significance went far beyond their colors because they represented a generation that had been born into a world already carrying the scars of conflicts they had never personally started[cite: 1].</p>
+    <p>They grew up surrounded by stories of their father's battles, hearing about Carlos Crown Bean and the loyalty he had shown E E, about the Bees who had fought in the skies, about the Watermelon Monkeys and Bjorns who had marched across battlefields, and especially about the Snails whose relationship with E E had existed since the first Snail was created in Heaven[cite: 1]. They learned that the Heather Gem had nearly become the foundation of a weapon capable of catastrophic destruction, that V V had once attempted to use it to power a rail gun, and that their father had repeatedly been forced to fight not because he desired endless war but because powerful enemies kept attempting to seize control of forces that could endanger everyone[cite: 1].</p>
+    <p>The younger generation therefore inherited something more complicated than a kingdom[cite: 1].</p>
+    <p>They inherited history[cite: 1].</p>
+    <p>And eventually, history came back for them[cite: 1].</p>
 
     <h2>THE REVIVAL OF V V</h2>
-    <p>V V was revived.</p>
-    <p>His return sent shock through the world because many believed that the era of his greatest conflicts had already passed, yet the revival of a ruler who had once attempted to use the Heather Gem to power a gigantic rail gun meant that the past could no longer be treated as something safely buried. The name V V once again became associated with uncertainty, and the people who had fought him wondered whether his return would lead to another attempt to seize the Heather Gem or rebuild the power that had once threatened the world.</p>
-    <p>The answer would eventually become more complicated than anyone expected.</p>
-    <p>Before V V could fully determine his future, the conflict surrounding him reached Nepal and Mount Everest.</p>
+    <p>V V was revived[cite: 1].</p>
+    <p>His return sent shock through the world because many believed that the era of his greatest conflicts had already passed, yet the revival of a ruler who had once attempted to use the Heather Gem to power a gigantic rail gun meant that the past could no longer be treated as something safely buried[cite: 1]. The name V V once again became associated with uncertainty, and the people who had fought him wondered whether his return would lead to another attempt to seize the Heather Gem or rebuild the power that had once threatened the world[cite: 1].</p>
+    <p>The answer would eventually become more complicated than anyone expected[cite: 1].</p>
+    <p>Before V V could fully determine his future, the conflict surrounding him reached Nepal and Mount Everest[cite: 1].</p>
 
     <h2>THE NEPAL DISASTER</h2>
-    <p>The Snails advanced through Nepal toward Mount Everest, and because the Snails had been on E E's side from the beginning, their presence in this campaign was not the result of a sudden decision to switch sides or a temporary agreement made after V V's revival. They were continuing the allegiance they had carried throughout the entire history of E E, from the moment the first Snail had been created in Heaven to the battles that now threatened to spread into another part of the world.</p>
-    <p>The struggle around Mount Everest became increasingly destructive, and the consequences did not remain limited to the soldiers who had chosen to fight. Floods spread through the region, damaging areas far beyond the immediate positions of the armies and affecting people who had never asked to become part of the conflict. The disaster became a painful reminder that wars between powerful factions rarely remain confined to the people who start them, because ordinary civilians often suffer the consequences when armies clash in places where people have built their homes and lives.</p>
-    <p>The Snails continued their advance, while the forces surrounding V V attempted to resist them, and the situation remained chaotic until V V was eventually captured.</p>
-    <p>With V V gone from the battlefield, the immediate danger began to disappear, and the floods eventually ended, but the damage that had already been done could not simply be erased.</p>
-    <p>The Snails therefore apologized to Nepal and to the people who had suffered because of the disaster, acknowledging that the consequences of their advance had reached far beyond the intended military objectives. They reassured the people of Nepal that the floods were over and that V V had been captured, making it clear that the immediate threat had ended even though the memory of the disaster would remain.</p>
-    <p>For the Snails, the apology was especially meaningful because their loyalty to E E had never been in question, yet loyalty did not mean refusing to acknowledge the suffering caused during a conflict.</p>
-    <p>The Snails had been with E E from the beginning.</p>
-    <p>They would remain with him.</p>
-    <p>But they would also remember what had happened.</p>
+    <p>The Snails advanced through Nepal toward Mount Everest, and because the Snails had been on E E's side from the beginning, their presence in this campaign was not the result of a sudden decision to switch sides or a temporary agreement made after V V's revival[cite: 1]. They were continuing the allegiance they had carried throughout the entire history of E E, from the moment the first Snail had been created in Heaven to the battles that now threatened to spread into another part of the world[cite: 1].</p>
+    <p>The struggle around Mount Everest became increasingly destructive, and the consequences did not remain limited to the soldiers who had chosen to fight[cite: 1]. Floods spread through the region, damaging areas far beyond the immediate positions of the armies and affecting people who had never asked to become part of the conflict[cite: 1]. The disaster became a painful reminder that wars between powerful factions rarely remain confined to the people who start them, because ordinary civilians often suffer the consequences when armies clash in places where people have built their homes and lives[cite: 1].</p>
+    <p>The Snails continued their advance, while the forces surrounding V V attempted to resist them, and the situation remained chaotic until V V was eventually captured[cite: 1].</p>
+    <p>With V V gone from the battlefield, the immediate danger began to disappear, and the floods eventually ended, but the damage that had already been done could not simply be erased[cite: 1].</p>
+    <p>The Snails therefore apologized to Nepal and to the people who had suffered because of the disaster, acknowledging that the consequences of their advance had reached far beyond the intended military objectives[cite: 1]. They reassured the people of Nepal that the floods were over and that V V had been captured, making it clear that the immediate threat had ended even though the memory of the disaster would remain[cite: 1].</p>
+    <p>For the Snails, the apology was especially meaningful because their loyalty to E E had never been in question, yet loyalty did not mean refusing to acknowledge the suffering caused during a conflict[cite: 1].</p>
+    <p>The Snails had been with E E from the beginning[cite: 1].</p>
+    <p>They would remain with him[cite: 1].</p>
+    <p>But they would also remember what had happened[cite: 1].</p>
 
     <h2>THE END OF THE OLD DIVISIONS</h2>
-    <p>After everything that had happened, V V began to understand his own history differently.</p>
-    <p>For years, he had believed that power would solve his problems, that the Heather Gem could give him the strength to protect and expand his empire, and that the rail gun would allow him to control the balance of power through fear. Instead, his pursuit of that power had helped create wars, destruction, betrayals, and suffering that reached far beyond the borders of the V V-ian Empire.</p>
-    <p>The Heather Gem had not given him the peaceful future he imagined.</p>
-    <p>It had nearly destroyed the world he wanted to rule.</p>
-    <p>Eventually, V V made the decision that would change the history of the entire world.</p>
-    <p>He joined E E.</p>
-    <p>The former ruler of the V V-ian Empire now stood beside the person he had once considered his enemy, and the significance of that decision was almost impossible to overstate because it represented the destruction of a rivalry that had defined one of the most important wars of the previous era.</p>
-    <p>But V V was not the only former enemy to change sides.</p>
-    <p>Mrs. Burton eventually joined E E as well, followed by Mr. Luke and members of V V's former crew. People who had once occupied different sides of the battlefield now found themselves standing beneath the same banner, united not because they had forgotten their pasts but because they had finally recognized that continuing the old divisions would only create another cycle of destruction.</p>
-    <p>From this impossible collection of former enemies and longtime allies came the Grand Alliance.</p>
+    <p>After everything that had happened, V V began to understand his own history differently[cite: 1].</p>
+    <p>For years, he had believed that power would solve his problems, that the Heather Gem could give him the strength to protect and expand his empire, and that the rail gun would allow him to control the balance of power through fear[cite: 1]. Instead, his pursuit of that power had helped create wars, destruction, betrayals, and suffering that reached far beyond the borders of the V V-ian Empire[cite: 1].</p>
+    <p>The Heather Gem had not given him the peaceful future he imagined[cite: 1].</p>
+    <p>It had nearly destroyed the world he wanted to rule[cite: 1].</p>
+    <p>Eventually, V V made the decision that would change the history of the entire world[cite: 1].</p>
+    <p>He joined E E[cite: 1].</p>
+    <p>The former ruler of the V V-ian Empire now stood beside the person he had once considered his enemy, and the significance of that decision was almost impossible to overstate because it represented the destruction of a rivalry that had defined one of the most important wars of the previous era[cite: 1].</p>
+    <p>But V V was not the only former enemy to change sides[cite: 1].</p>
+    <p>Mrs. Burton eventually joined E E as well, followed by Mr. Luke and members of V V's former crew[cite: 1]. People who had once occupied different sides of the battlefield now found themselves standing beneath the same banner, united not because they had forgotten their pasts but because they had finally recognized that continuing the old divisions would only create another cycle of destruction[cite: 1].</p>
+    <p>From this impossible collection of former enemies and longtime allies came the Grand Alliance[cite: 1].</p>
 
     <h2>THE GRAND ALLIANCE</h2>
-    <p>The Grand Alliance was the largest and most extraordinary coalition E E had ever commanded, because unlike the smaller alliances of the past, it was built from years of conflict and reconciliation. Carlos Crown Bean remained at E E's side, representing the loyalty that had existed from the earliest days, while V V represented the possibility that even an enemy who had once caused enormous suffering could eventually recognize the consequences of his actions and choose a different path.</p>
-    <p>Mrs. Burton and Mr. Luke stood among them despite everything that had happened before, and members of V V's former crew joined as well. The Bees remained part of the alliance, the Watermelon Monkeys and Bjorns prepared to fight beside the living letters, the Snails continued their ancient loyalty to E E, and A A and the other letters remained connected to the growing coalition.</p>
-    <p>Q Q, G G, R R, and B B now stood within the alliance as members of the younger generation, watching a collection of former enemies become brothers and sisters in the same cause.</p>
-    <p>The Grand Alliance was therefore not merely an army.</p>
-    <p>It was the accumulated history of the world standing in one place.</p>
-    <p>Every person within it carried memories of a different chapter, and yet they had all reached the same conclusion: whatever disagreements had separated them in the past, the future required them to stand together.</p>
-    <p>For a brief period, it seemed that the long cycle of wars might finally be ending.</p>
-    <p>Then Kris left.</p>
+    <p>The Grand Alliance was the largest and most extraordinary coalition E E had ever commanded, because unlike the smaller alliances of the past, it was built from years of conflict and reconciliation[cite: 1]. Carlos Crown Bean remained at E E's side, representing the loyalty that had existed from the earliest days, while V V represented the possibility that even an enemy who had once caused enormous suffering could eventually recognize the consequences of his actions and choose a different path[cite: 1].</p>
+    <p>Mrs. Burton and Mr. Luke stood among them despite everything that had happened before, and members of V V's former crew joined as well[cite: 1]. The Bees remained part of the alliance, the Watermelon Monkeys and Bjorns prepared to fight beside the living letters, the Snails continued their ancient loyalty to E E, and A A and the other letters remained connected to the growing coalition[cite: 1].</p>
+    <p>Q Q, G G, R R, and B B now stood within the alliance as members of the younger generation, watching a collection of former enemies become brothers and sisters in the same cause[cite: 1].</p>
+    <p>The Grand Alliance was therefore not merely an army[cite: 1].</p>
+    <p>It was the accumulated history of the world standing in one place[cite: 1].</p>
+    <p>Every person within it carried memories of a different chapter, and yet they had all reached the same conclusion: whatever disagreements had separated them in the past, the future required them to stand together[cite: 1].</p>
+    <p>For a brief period, it seemed that the long cycle of wars might finally be ending[cite: 1].</p>
+    <p>Then Kris left[cite: 1].</p>
 
     <h2>KRIS AND ORIFLY</h2>
-    <p>Kris eventually abandoned E E's side and joined Orifly's forces.</p>
-    <p>His departure was particularly painful because the world had already endured so many betrayals and changes in allegiance, and the Grand Alliance had been built upon the belief that people could move beyond the divisions of the past. Kris's decision therefore threatened not only the military strength of E E's coalition but also the idea that the Grand Alliance could remain united despite the complicated histories of its members.</p>
-    <p>Kris was now standing on the opposite side.</p>
-    <p>Orifly's forces began to gather.</p>
-    <p>The Grand Alliance prepared for another war.</p>
-    <p>But while Kris moved away from E E, another figure moved toward him.</p>
-    <p>Chin Crater Legend joined E E's side.</p>
-    <p>The arrival of Chin Crater Legend did not erase the pain caused by Kris's departure, but it strengthened the Grand Alliance at a moment when the coalition needed every ally it could find. The world was once again rearranging itself, with one former ally leaving while another figure entered the story and chose to stand beside E E.</p>
-    <p>The sides were now clear.</p>
-    <p>E E had the Grand Alliance.</p>
-    <p>Orifly had Kris.</p>
-    <p>And between them stood everything that had happened since the beginning.</p>
+    <p>Kris eventually abandoned E E's side and joined Orifly's forces[cite: 1].</p>
+    <p>His departure was particularly painful because the world had already endured so many betrayals and changes in allegiance, and the Grand Alliance had been built upon the belief that people could move beyond the divisions of the past[cite: 1]. Kris's decision therefore threatened not only the military strength of E E's coalition but also the idea that the Grand Alliance could remain united despite the complicated histories of its members[cite: 1].</p>
+    <p>Kris was now standing on the opposite side[cite: 1].</p>
+    <p>Orifly's forces began to gather[cite: 1].</p>
+    <p>The Grand Alliance prepared for another war[cite: 1].</p>
+    <p>But while Kris moved away from E E, another figure moved toward him[cite: 1].</p>
+    <p>Chin Crater Legend joined E E's side[cite: 1].</p>
+    <p>The arrival of Chin Crater Legend did not erase the pain caused by Kris's departure, but it strengthened the Grand Alliance at a moment when the coalition needed every ally it could find[cite: 1]. The world was once again rearranging itself, with one former ally leaving while another figure entered the story and chose to stand beside E E[cite: 1].</p>
+    <p>The sides were now clear[cite: 1].</p>
+    <p>E E had the Grand Alliance[cite: 1].</p>
+    <p>Orifly had Kris[cite: 1].</p>
+    <p>And between them stood everything that had happened since the beginning[cite: 1].</p>
 
     <h2>THE FINAL MARCH</h2>
-    <p>The armies eventually gathered across from one another, and the battlefield became so crowded with soldiers, creatures, living letters, former enemies, and new allies that it seemed almost impossible to believe that many of the people standing together had once fought on opposite sides. V V stood within E E's forces despite once being one of E E's greatest enemies, while Mrs. Burton and Mr. Luke stood alongside people who had once viewed them with suspicion, and the members of V V's former crew prepared themselves to fight beneath the same banner as the people they had once opposed.</p>
-    <p>Carlos Crown Bean remained beside E E.</p>
-    <p>Q Q, G G, R R, and B B stood among the younger generation.</p>
-    <p>Chin Crater Legend stood with the Grand Alliance.</p>
-    <p>The Bees filled the sky overhead.</p>
-    <p>The Watermelon Monkeys gathered across the ground.</p>
-    <p>The Bjorns formed their ranks.</p>
-    <p>The Snails advanced alongside the army, carrying with them a history that began before the first war and before the first enemy, back to the moment when E E had created the first Snail in Heaven.</p>
-    <p>Across the battlefield stood Orifly's forces.</p>
-    <p>And among them stood Kris.</p>
-    <p>The distance between the two sides seemed to contain the entire history of the world.</p>
-    <p>The Heather Gem remained somewhere beyond the immediate battlefield, still carrying the enormous potential that had once caused the Ten-Day Campaign, inspired V V's rail gun project, powered E E's heat-seeking ray gun, and driven countless people to seek knowledge that they believed could give them control over the future. Its existence meant that the story surrounding power was not truly finished, because as long as the Heather Gem remained in the world, someone might eventually attempt to use it again.</p>
-    <p>Then the E E Choir began to sing.</p>
-    <p>Their voices spread across the battlefield, rising above the sound of marching feet and gathering weapons, carrying the memory of the world through every rank of the Grand Alliance. Their song remembered the beginning in Heaven, when E E was being created and blessed SUBJECT R and SUBJECT J, when the first Watermelon Monkey, the first Bee, and the first Snail came into existence, and when none of them could possibly have known that their creations would eventually become part of a history so enormous that generations would still speak of it long after the first battles had ended.</p>
-    <p>The Choir remembered Carlos Crown Bean.</p>
-    <p>They remembered the rise of V V.</p>
-    <p>They remembered the Heather Gem.</p>
-    <p>They remembered the rail gun that V V wanted to create.</p>
-    <p>They remembered the Ten-Day Campaign.</p>
-    <p>They remembered the moment E E and Carlos Crown Bean obtained the Heather Gem and transformed its power into the heat-seeking ray gun.</p>
-    <p>They remembered the raid when V V seized the gem.</p>
-    <p>They remembered Carlos Crown Bean chasing him.</p>
-    <p>They remembered Mustache Bee entering the mysterious book.</p>
-    <p>They remembered the Third Year of Judgment and the transformation into Kris Poo.</p>
-    <p>They remembered Mrs. Burton and Mr. Luke.</p>
-    <p>They remembered E E's capture and escape.</p>
-    <p>They remembered the Sixth Year of Judgment and the expected arrival of Ryan and Jax.</p>
-    <p>They remembered Q Q, G G, R R, and B B.</p>
-    <p>They remembered V V's revival.</p>
-    <p>They remembered Nepal.</p>
-    <p>They remembered Mount Everest.</p>
-    <p>They remembered the floods.</p>
-    <p>They remembered the Snails' apology.</p>
-    <p>They remembered V V changing sides.</p>
-    <p>They remembered Mrs. Burton and Mr. Luke joining E E.</p>
-    <p>They remembered the formation of the Grand Alliance.</p>
-    <p>They remembered Kris leaving for Orifly.</p>
-    <p>They remembered Chin Crater Legend joining E E.</p>
-    <p>And they remembered every person who had been lost, changed, betrayed, forgiven, transformed, or reunited along the way.</p>
-    <p>The song became more than an anthem.</p>
-    <p>It became a record of memory.</p>
-    <p>E E stood listening to the Choir, surrounded by the people who had survived the long journey from the first days of the world to the present moment, and for perhaps the first time he could see the full shape of the history behind him. He could see that the wars had never truly been isolated events, because every battle had created consequences that eventually produced another alliance, another betrayal, another generation, or another crisis.</p>
-    <p>The world had changed because of him.</p>
-    <p>But E E had also changed because of the world.</p>
-    <p>He looked toward Carlos Crown Bean, the ally who had stood beside him through the darkest parts of the story, and then toward the enormous coalition surrounding them. V V stood among people he had once fought. Mrs. Burton and Mr. Luke stood among former enemies. The Snails remained loyal as they had been from the beginning. The Bees and Watermelon Monkeys filled the ranks, and the younger generation stood ready to inherit whatever future came after the battle.</p>
-    <p>Across the field, Kris waited with Orifly.</p>
-    <p>The song reached its final moments.</p>
-    <p>The battlefield fell quiet.</p>
-    <p>E E raised his hand.</p>
-    <p>Every soldier of the Grand Alliance watched.</p>
-    <p>For a moment, the world seemed to hold its breath, as though every event that had led to that single moment had finally gathered together into one point in history: the creation in Heaven, the blessings, the first creatures, the friendships, the V V-ian Empire, the Heather Gem, the rail gun, the Ten-Day Campaign, the mysterious book, the Years of Judgment, the capture and escape, the birth of the new generation, the revival of V V, the disaster in Nepal, the apology, the formation of the Grand Alliance, the departure of Kris, and the arrival of Chin Crater Legend.</p>
-    <p>Then E E lowered his hand.</p>
-    <p>The Grand Alliance began to march.</p>
-    <p>The Snails moved with the army as they had done since the earliest days of E E's existence, while the Bees rose into the sky above them and the Watermelon Monkeys advanced across the ground with the Bjorns and living letters moving behind them. Carlos Crown Bean remained close to E E, while Q Q, G G, R R, and B B marched into the future beside the father whose history had already shaped the world they had inherited. V V walked among the former enemies who had become his allies, and Mrs. Burton, Mr. Luke, and the former members of V V's crew advanced beneath the same banner.</p>
-    <p>Chin Crater Legend marched with them.</p>
-    <p>Across the battlefield, Orifly's forces began moving.</p>
-    <p>Kris marched with them.</p>
-    <p>The two armies moved toward one another, and with every step the distance between them became smaller, while the weight of history behind E E's side seemed to grow heavier rather than lighter. This was no longer simply another battle over territory or another argument between rival kingdoms; it was the latest consequence of a story that had begun before the first kingdom had even been named, when E E was still being created in Heaven and could not possibly have known that one day his name would become synonymous with wars, alliances, forgiveness, betrayal, and the survival of an entire world.</p>
-    <p>The Chronicles of E E had begun with creation.</p>
-    <p>They had grown through friendship.</p>
-    <p>They had been tested by ambition.</p>
-    <p>They had been scarred by war.</p>
-    <p>They had been complicated by betrayal.</p>
-    <p>They had been transformed by forgiveness.</p>
-    <p>They had survived the rise and fall of empires, the struggle for the Heather Gem, the threat of the rail gun, the Ten-Day Campaign, the Years of Judgment, the mysterious book, the revival of V V, the disaster in Nepal, and the impossible transformation of former enemies into allies.</p>
-    <p>Now the next generation stood upon the same ground where the old generation had once fought, carrying memories that belonged to people who had lived before them and responsibilities that would eventually become their own.</p>
-    <p>E E continued forward.</p>
-    <p>Carlos Crown Bean continued forward.</p>
-    <p>The Grand Alliance continued forward.</p>
-    <p>And above them, the E E Choir's final notes disappeared into the sky.</p>
-    <p>Ahead waited Orifly.</p>
-    <p>Ahead waited Kris.</p>
-    <p>Ahead waited the unknown.</p>
-    <p>And somewhere beyond the battlefield, still carrying the terrible potential that had shaped so much of the world's history, the Heather Gem remained.</p>
-    <p>The world had survived everything that had come before.</p>
-    <p>Now it would have to survive what came next.</p>
-    <p>The next great war of the Chronicles of E E had begun.</p>
+    <p>The armies eventually gathered across from one another, and the battlefield became so crowded with soldiers, creatures, living letters, former enemies, and new allies that it seemed almost impossible to believe that many of the people standing together had once fought on opposite sides[cite: 1]. V V stood within E E's forces despite once being one of E E's greatest enemies, while Mrs. Burton and Mr. Luke stood alongside people who had once viewed them with suspicion, and the members of V V's former crew prepared themselves to fight beneath the same banner as the people they had once opposed[cite: 1].</p>
+    <p>Carlos Crown Bean remained beside E E[cite: 1].</p>
+    <p>Q Q, G G, R R, and B B stood among the younger generation[cite: 1].</p>
+    <p>Chin Crater Legend stood with the Grand Alliance[cite: 1].</p>
+    <p>The Bees filled the sky overhead[cite: 1].</p>
+    <p>The Watermelon Monkeys gathered across the ground[cite: 1].</p>
+    <p>The Bjorns formed their ranks[cite: 1].</p>
+    <p>The Snails advanced alongside the army, carrying with them a history that began before the first war and before the first enemy, back to the moment when E E had created the first Snail in Heaven[cite: 1].</p>
+    <p>Across the battlefield stood Orifly's forces[cite: 1].</p>
+    <p>And among them stood Kris[cite: 1].</p>
+    <p>The distance between the two sides seemed to contain the entire history of the world[cite: 1].</p>
+    <p>The Heather Gem remained somewhere beyond the immediate battlefield, still carrying the enormous potential that had once caused the Ten-Day Campaign, inspired V V's rail gun project, powered E E's heat-seeking ray gun, and driven countless people to seek knowledge that they believed could give them control over the future[cite: 1]. Its existence meant that the story surrounding power was not truly finished, because as long as the Heather Gem remained in the world, someone might eventually attempt to use it again[cite: 1].</p>
+    <p>Then the E E Choir began to sing[cite: 1].</p>
+    <p>Their voices spread across the battlefield, rising above the sound of marching feet and gathering weapons, carrying the memory of the world through every rank of the Grand Alliance[cite: 1]. Their song remembered the beginning in Heaven, when E E was being created and blessed SUBJECT R and SUBJECT J, when the first Watermelon Monkey, the first Bee, and the first Snail came into existence, and when none of them could possibly have known that their creations would eventually become part of a history so enormous that generations would still speak of it long after the first battles had ended[cite: 1].</p>
+    <p>The Choir remembered Carlos Crown Bean[cite: 1].</p>
+    <p>They remembered the rise of V V[cite: 1].</p>
+    <p>They remembered the Heather Gem[cite: 1].</p>
+    <p>They remembered the rail gun that V V wanted to create[cite: 1].</p>
+    <p>They remembered the Ten-Day Campaign[cite: 1].</p>
+    <p>They remembered the moment E E and Carlos Crown Bean obtained the Heather Gem and transformed its power into the heat-seeking ray gun[cite: 1].</p>
+    <p>They remembered the raid when V V seized the gem[cite: 1].</p>
+    <p>They remembered Carlos Crown Bean chasing him[cite: 1].</p>
+    <p>They remembered Mustache Bee entering the mysterious book[cite: 1].</p>
+    <p>They remembered the Third Year of Judgment and the transformation into Kris Poo[cite: 1].</p>
+    <p>They remembered Mrs. Burton and Mr. Luke[cite: 1].</p>
+    <p>They remembered E E's capture and escape[cite: 1].</p>
+    <p>They remembered the Sixth Year of Judgment and the expected arrival of Ryan and Jax[cite: 1].</p>
+    <p>They remembered Q Q, G G, R R, and B B[cite: 1].</p>
+    <p>They remembered V V's revival[cite: 1].</p>
+    <p>They remembered Nepal[cite: 1].</p>
+    <p>They remembered Mount Everest[cite: 1].</p>
+    <p>They remembered the floods[cite: 1].</p>
+    <p>They remembered the Snails' apology[cite: 1].</p>
+    <p>They remembered V V changing sides[cite: 1].</p>
+    <p>They remembered Mrs. Burton and Mr. Luke joining E E[cite: 1].</p>
+    <p>They remembered the formation of the Grand Alliance[cite: 1].</p>
+    <p>They remembered Kris leaving for Orifly[cite: 1].</p>
+    <p>They remembered Chin Crater Legend joining E E[cite: 1].</p>
+    <p>And they remembered every person who had been lost, changed, betrayed, forgiven, transformed, or reunited along the way[cite: 1].</p>
+    <p>The song became more than an anthem[cite: 1].</p>
+    <p>It became a record of memory[cite: 1].</p>
+    <p>E E stood listening to the Choir, surrounded by the people who had survived the long journey from the first days of the world to the present moment, and for perhaps the first time he could see the full shape of the history behind him[cite: 1]. He could see that the wars had never truly been isolated events, because every battle had created consequences that eventually produced another alliance, another betrayal, another generation, or another crisis[cite: 1].</p>
+    <p>The world had changed because of him[cite: 1].</p>
+    <p>But E E had also changed because of the world[cite: 1].</p>
+    <p>He looked toward Carlos Crown Bean, the ally who had stood beside him through the darkest parts of the story, and then toward the enormous coalition surrounding them[cite: 1]. V V stood among people he had once fought[cite: 1]. Mrs. Burton and Mr. Luke stood among former enemies[cite: 1]. The Snails remained loyal as they had been from the beginning[cite: 1]. The Bees and Watermelon Monkeys filled the ranks, and the younger generation stood ready to inherit whatever future came after the battle[cite: 1].</p>
+    <p>Across the field, Kris waited with Orifly[cite: 1].</p>
+    <p>The song reached its final moments[cite: 1].</p>
+    <p>The battlefield fell quiet[cite: 1].</p>
+    <p>E E raised his hand[cite: 1].</p>
+    <p>Every soldier of the Grand Alliance watched[cite: 1].</p>
+    <p>For a moment, the world seemed to hold its breath, as though every event that had led to that single moment had finally gathered together into one point in history: the creation in Heaven, the blessings, the first creatures, the friendships, the V V-ian Empire, the Heather Gem, the rail gun, the Ten-Day Campaign, the mysterious book, the Years of Judgment, the capture and escape, the birth of the new generation, the revival of V V, the disaster in Nepal, the apology, the formation of the Grand Alliance, the departure of Kris, and the arrival of Chin Crater Legend[cite: 1].</p>
+    <p>Then E E lowered his hand[cite: 1].</p>
+    <p>The Grand Alliance began to march[cite: 1].</p>
+    <p>The Snails moved with the army as they had done since the earliest days of E E's existence, while the Bees rose into the sky above them and the Watermelon Monkeys advanced across the ground with the Bjorns and living letters moving behind them[cite: 1]. Carlos Crown Bean remained close to E E, while Q Q, G G, R R, and B B marched into the future beside the father whose history had already shaped the world they had inherited[cite: 1]. V V walked among the former enemies who had become his allies, and Mrs. Burton, Mr. Luke, and the former members of V V's crew advanced beneath the same banner[cite: 1].</p>
+    <p>Chin Crater Legend marched with them[cite: 1].</p>
+    <p>Across the battlefield, Orifly's forces began moving[cite: 1].</p>
+    <p>Kris marched with them[cite: 1].</p>
+    <p>The two armies moved toward one another, and with every step the distance between them became smaller, while the weight of history behind E E's side seemed to grow heavier rather than lighter[cite: 1]. This was no longer simply another battle over territory or another argument between rival kingdoms; it was the latest consequence of a story that had begun before the first kingdom had even been named, when E E was still being created in Heaven and could not possibly have known that one day his name would become synonymous with wars, alliances, forgiveness, betrayal, and the survival of an entire world[cite: 1].</p>
+    <p>The Chronicles of E E had begun with creation[cite: 1].</p>
+    <p>They had grown through friendship[cite: 1].</p>
+    <p>They had been tested by ambition[cite: 1].</p>
+    <p>They had been scarred by war[cite: 1].</p>
+    <p>They had been complicated by betrayal[cite: 1].</p>
+    <p>They had been transformed by forgiveness[cite: 1].</p>
+    <p>They had survived the rise and fall of empires, the struggle for the Heather Gem, the threat of the rail gun, the Ten-Day Campaign, the Years of Judgment, the mysterious book, the revival of V V, the disaster in Nepal, and the impossible transformation of former enemies into allies[cite: 1].</p>
+    <p>Now the next generation stood upon the same ground where the old generation had once fought, carrying memories that belonged to people who had lived before them and responsibilities that would eventually become their own[cite: 1].</p>
+    <p>E E continued forward[cite: 1].</p>
+    <p>Carlos Crown Bean continued forward[cite: 1].</p>
+    <p>The Grand Alliance continued forward[cite: 1].</p>
+    <p>And above them, the E E Choir's final notes disappeared into the sky[cite: 1].</p>
+    <p>Ahead waited Orifly[cite: 1].</p>
+    <p>Ahead waited Kris[cite: 1].</p>
+    <p>Ahead waited the unknown[cite: 1].</p>
+    <p>And somewhere beyond the battlefield, still carrying the terrible potential that had shaped so much of the world's history, the Heather Gem remained[cite: 1].</p>
+    <p>The world had survived everything that had come before[cite: 1].</p>
+    <p>Now it would have to survive what came next[cite: 1].</p>
+    <p>The next great war of the Chronicles of E E had begun[cite: 1].</p>
   </div>
 
 </body>
